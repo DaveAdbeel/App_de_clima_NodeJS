@@ -13,7 +13,7 @@ class Searches {
             language: "es",
         };
     }
-    async searchCity(place = "") {
+    async searchCities(place = "") {
         //peticion http
         try {
             const instance = axios.create({
@@ -22,8 +22,13 @@ class Searches {
             });
 
             const response = await instance.get();
-            console.log(response.data);
-            return response.data;
+
+            return response.data.features.map(({ id, place_name, center }) => ({
+                id,
+                place_name,
+                lng: center[0],
+                lat: center[1],
+            }));
         } catch (err) {
             console.error(`Error inesperado: ${err}`);
             return [];
@@ -31,6 +36,19 @@ class Searches {
 
         //retorna los lugares que coinciden con la busqueda
     }
-}
 
+    async cityTemp(lat, lon) {
+        try {
+            const { data } = await axios.get(
+                `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.OPENWEATHER_KEY}&lang=es&units=metric`
+            );
+            const { temp, temp_min, temp_max } = data.main;
+            let { description } = data.weather[0];
+            description = description.charAt(0).toUpperCase() + description.slice(1);
+            return { temp, temp_min, temp_max, description };
+        } catch (err) {
+            throw console.error(err);
+        }
+    }
+}
 export default Searches;
