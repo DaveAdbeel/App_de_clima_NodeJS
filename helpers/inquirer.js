@@ -67,18 +67,17 @@ const readInput = async (message) => {
     return desc;
 };
 
-const taskListDelete = async (tasks = []) => {
-    const choices = tasks.map((task, i) => {
+const placeList = async (places = []) => {
+    const choices = places.map((place, i) => {
         const idx = `${i + 1}.`.green;
 
         return {
-            value: task.id,
-            name: `${idx} ${task.desc}`,
+            value: place.id,
+            name: `${idx} ${place.place_name}`,
         };
     });
-
     choices.unshift({
-        value: "0",
+        value: 0,
         name: "0.".green + " Cancelar",
     });
 
@@ -86,7 +85,7 @@ const taskListDelete = async (tasks = []) => {
         {
             type: "list",
             name: "id",
-            message: "Borrar",
+            message: "Seleccione un lugar: \n",
             choices,
         },
     ];
@@ -132,4 +131,4 @@ const showChecklist = async (tasks = []) => {
     return ids;
 };
 
-export { menu, pause, readInput, taskListDelete, confirm, showChecklist };
+export { menu, pause, readInput, placeList, confirm, showChecklist };
