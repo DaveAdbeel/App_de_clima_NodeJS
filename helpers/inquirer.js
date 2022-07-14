@@ -27,7 +27,7 @@ const menu = async () => {
     console.clear();
     console.log();
     console.log("==========================".green);
-    console.log("  Seleccione una opción".white);
+    console.log("  Seleccione una opción".green);
     console.log("==========================\n".green);
 
     const { option } = await inq.prompt(questions);
@@ -78,14 +78,15 @@ const placeList = async (places = []) => {
     });
     choices.unshift({
         value: 0,
-        name: "0.".green + " Cancelar",
+        name: "0.".red + "Cancelar".red,
     });
+
 
     const questions = [
         {
             type: "list",
             name: "id",
-            message: "Seleccione un lugar: \n",
+            message: "Seleccione un lugar: ",
             choices,
         },
     ];
@@ -94,41 +95,6 @@ const placeList = async (places = []) => {
     return id;
 };
 
-const confirm = async (message) => {
-    const question = [
-        {
-            type: "confirm",
-            name: "ok",
-            message,
-        },
-    ];
 
-    const { ok } = await inquirer.prompt(question);
-    return ok;
-};
 
-const showChecklist = async (tasks = []) => {
-    const choices = tasks.map((task, i) => {
-        const idx = `${i + 1}.`.green;
-
-        return {
-            value: task.id,
-            name: `${idx} ${task.desc}`,
-            checked: task.completadoEn ? true : false,
-        };
-    });
-
-    const question = [
-        {
-            type: "checkbox",
-            name: "ids",
-            message: "Selecciones",
-            choices,
-        },
-    ];
-
-    const { ids } = await inq.prompt(question);
-    return ids;
-};
-
-export { menu, pause, readInput, placeList, confirm, showChecklist };
+export { menu, pause, readInput, placeList };
