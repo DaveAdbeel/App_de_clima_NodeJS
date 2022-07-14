@@ -11,7 +11,7 @@
 
 - <span style="color:#ff0;">JavaScript</span>
 - <span style="color:#9f9">NodeJS</span>
-- Libreria [Colors](https://github.com/Marak/colors.js), [Inquirer](https://github.com/SBoudrias/Inquirer.js) [Axios](https://axios-http.com/) e [Dotenv](https://www.npmjs.com/package/dotenv)
+- Libreria [Colors](https://github.com/Marak/colors.js), [Inquirer](https://github.com/SBoudrias/Inquirer.js), [Axios](https://axios-http.com/) e [Dotenv](https://www.npmjs.com/package/dotenv)
 - APIs [Mapbox](https://docs.mapbox.com/api/search/geocoding/) e [OpenWeatherMap](https://openweathermap.org/current)
 &nbsp; 
 
